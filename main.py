@@ -39,13 +39,13 @@ users = {"bob":"123",
          "mike":"password123",
          "liz":"pass123"
          }
-print("-" * 12)
+print("-" * 40)
 
 ##zadání uživatelských údajů
 zadane_jmeno = input("Please enter your username: ")
 zadane_heslo = input("Please enter your password: ")
 
-print("-" * 12)
+print("-" * 40)
 
 ###podmínky pokud nejsou správné uživatelské údaje
 
@@ -55,12 +55,12 @@ else:
     print("Unregistered user, terminating the program...")
     exit()
 
-print("-" * 12)
+print("-" * 40)
 
 ####vybrání čísla + analýza
 vyber_textu = input("Enter a number btw. 1 and 3 to select: ")
 
-print("-" * 12)
+print("-" * 40)
 
 try:
     cislo = int(vyber_textu)
@@ -199,13 +199,13 @@ elif int(vyber_textu) == 3:
     print(f"There are {pocet_cisel3} numeric strings.")
     print(f"The sum of all the numbers {suma_cisel3}")
 
-print("-" * 12)
+print("-" * 40)
 
 #######grafické znázornění
 
 print("LEN|  OCURRENCES |NR.")
 
-print("-" * 12)
+print("-" * 40)
 
 delky_slov1 = {}
 delky_slov2 = {}

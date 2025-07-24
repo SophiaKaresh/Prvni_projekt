@@ -226,7 +226,7 @@ for delka_1, pocet in sorted(delky_slov1.items()):
 
 
 for slovo in slova_2:
-    delka_2 = len(slovo.strip(",."))
+    delka_2 = len(slovo.strip(",.").replace("-",""))
     if delka_2 not in delky_slov2:
         delky_slov2[delka_2] = 0
     delky_slov2[delka_2] += 1

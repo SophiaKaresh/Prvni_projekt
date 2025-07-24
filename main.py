@@ -213,7 +213,7 @@ delky_slov3 = {}
 
 
 for slovo in slova_1:
-    delka_1 = len(slovo)
+    delka_1 = len(slovo.strip(",."))
     if delka_1 not in delky_slov1:
         delky_slov1[delka_1] = 0
     delky_slov1[delka_1] += 1
@@ -226,7 +226,7 @@ for delka_1, pocet in sorted(delky_slov1.items()):
 
 
 for slovo in slova_2:
-    delka_2 = len(slovo)
+    delka_2 = len(slovo.strip(",."))
     if delka_2 not in delky_slov2:
         delky_slov2[delka_2] = 0
     delky_slov2[delka_2] += 1
@@ -240,7 +240,7 @@ for delka_2, pocet in sorted(delky_slov2.items()):
 
 
 for slovo in slova_3:
-    delka_3 = len(slovo)
+    delka_3 = len(slovo.strip(",."))
     if delka_3 not in delky_slov3:
         delky_slov3[delka_3] = 0
     delky_slov3[delka_3] += 1
@@ -250,7 +250,6 @@ for delka_3, pocet in sorted(delky_slov3.items()):
     graf_3 = (f"{delka_3} | {"*" * pocet} | {pocet}")
     if int(vyber_textu) == 3:
         print(graf_3)
-
 
 
 #konec projektu

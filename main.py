@@ -220,7 +220,7 @@ for slovo in slova_1:
 
 
 for delka_1, pocet in sorted(delky_slov1.items()):
-    graf_1 = (f"{delka_1} | {"*" * pocet} | {pocet}")
+    graf_1 = (f"{delka_1} | {'*' * pocet} | {pocet}")
     if int(vyber_textu) == 1:
         print(graf_1)
 
@@ -233,7 +233,7 @@ for slovo in slova_2:
 
 
 for delka_2, pocet in sorted(delky_slov2.items()):
-    graf_2  = (f"{delka_2} | {"*" * pocet} | {pocet}")
+    graf_2  = (f"{delka_2} | {'*' * pocet} | {pocet}")
     if int(vyber_textu) == 2:
         print(graf_2)
 
@@ -247,7 +247,7 @@ for slovo in slova_3:
 
 
 for delka_3, pocet in sorted(delky_slov3.items()):
-    graf_3 = (f"{delka_3} | {"*" * pocet} | {pocet}")
+    graf_3 = (f"{delka_3} | {'*' * pocet} | {pocet}")
     if int(vyber_textu) == 3:
         print(graf_3)
 

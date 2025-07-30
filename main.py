@@ -33,7 +33,7 @@ TEXTS = [
     garpike and stingray are also present.'''
 ]
 
-#část první - ověření uživatele
+#ověření uživatele
 
 registrovani_uzivatele = dict(
 bob = "123", 
@@ -54,7 +54,7 @@ else:
     print("unregistred user, terminating the program...")
     exit()
 
-#část druhá - analýza textu
+#analýza textu
 
 vyber = input("Enter a number btw. 1 and 3 to select: ")
 if vyber.isdigit():
@@ -114,3 +114,4 @@ if vyber.isdigit():
 else:
     print("invalid choice, terminating the program...")
     exit()
+#konec projektu

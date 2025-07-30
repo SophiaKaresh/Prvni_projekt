@@ -33,223 +33,84 @@ TEXTS = [
     garpike and stingray are also present.'''
 ]
 
-#uložené údaje
-users = {"bob":"123",
-         "ann":"pass123",
-         "mike":"password123",
-         "liz":"pass123"
-         }
-print("-" * 40)
+#část první - ověření uživatele
 
-##zadání uživatelských údajů
-zadane_jmeno = input("Please enter your username: ")
-zadane_heslo = input("Please enter your password: ")
-
-print("-" * 40)
-
-###podmínky pokud nejsou správné uživatelské údaje
-
-if zadane_jmeno in users and users[zadane_jmeno] == zadane_heslo:
-    print("Welcome to the app," + zadane_jmeno + "\nWe have 3 texts to be analyzed.")
+registrovani_uzivatele = dict(
+bob = "123", 
+ann = "pass123", 
+mike = "password123", 
+liz = "pass123")
+user = input("username: ")
+password = input("password: ")
+if user in registrovani_uzivatele and registrovani_uzivatele[user] == password:
+    print(
+    "----------------------------------------",
+    f"Welcome to the app, {user} ",
+    "We have 3 texts to be analyzed.",
+    "----------------------------------------",
+    sep = "\n"
+    )
 else:
-    print("Unregistered user, terminating the program...")
+    print("unregistred user, terminating the program...")
     exit()
 
-print("-" * 40)
+#část druhá - analýza textu
 
-####vybrání čísla + analýza
-vyber_textu = input("Enter a number btw. 1 and 3 to select: ")
+vyber = input("Enter a number btw. 1 and 3 to select: ")
+if vyber.isdigit():
+    cislo = int(vyber)
+    if 1 <= cislo <= 3:
+        vybrany_text = TEXTS[cislo - 1]
+        slova = vybrany_text.split()
 
-print("-" * 40)
+        word_count = 0
+        titlecase = 0
+        uppercase = 0
+        lowercase = 0
+        numeric_strings= 0
+        suma = 0
 
-try:
-    cislo = int(vyber_textu)
-except ValueError:
-    print("It's not a number, terminating program...")
+        for slovo in slova:
+            word_count += 1
+            if slovo.istitle():
+                titlecase += 1
+            elif slovo.isupper():
+                uppercase += 1
+            elif slovo.islower():
+                lowercase += 1
+            elif slovo.isnumeric():
+                numeric_strings += 1
+                suma += int(slovo)
+
+        print(
+        "----------------------------------------",
+        f"There are {word_count} words in the selected text.",
+        f"There are {titlecase} titlecase words.",
+        f"There are {uppercase} uppercase words.",
+        f"There are {lowercase} lowercase words.",
+        f"There are {numeric_strings} numeric strings.",
+        f"The sum of all the numbers {suma}",
+        "----------------------------------------",
+        "LEN|   OCCURRENCES      |NR.",
+        "----------------------------------------",
+        sep = "\n"
+        )      
+
+        delky_slov = dict()
+        for slovo in slova:
+            slovo_bez_interpunkce = slovo.strip(".,")
+            delka = len(slovo_bez_interpunkce)
+            if delka > 0:
+                 delky_slov[delka] = delky_slov.get(delka, 0) + 1
+        
+        for delka in sorted(delky_slov):
+            pocet_pismen = delky_slov[delka]
+            hvezdicky = "*" * pocet_pismen
+            print(f"{delka:>3}| {hvezdicky:<18} | {pocet_pismen:<3}")
+
+    else:
+        print("invalid number, terminating the program...")
+        exit()
+else:
+    print("invalid choice, terminating the program...")
     exit()
-
-if not 1<= cislo <=3:
-    print("It's not a number between 1-3, terminating program... ")
-    exit()
-
-##### vypsání možností
-
-pocet_slov1 = len(TEXTS[0].split())
-pocet_slov2 = len(TEXTS[1].split())
-pocet_slov3 = len(TEXTS[2].split())
-
-
-
-
-velka_pismena1 = 0
-for slovo in TEXTS[0].split():
-    for znak in slovo:
-        if znak.istitle() and not slovo.isupper():
-            velka_pismena1 +=1
-            break
-
-velka_pismena2 = 0
-for slovo in TEXTS[1].split():
-    for znak in slovo:
-        if znak.istitle() and not slovo.isupper():
-            velka_pismena2 +=1
-            break
-
-velka_pismena3 = 0
-for slovo in TEXTS[2].split():
-    for znak in slovo:
-        if znak.istitle() and not slovo.isupper():
-            velka_pismena3 +=1
-            break
-
-
-
-
-slova_velkymi1 = 0
-for slovo in TEXTS[0].split():
-    if slovo.isupper():
-        slova_velkymi1 += 1
-
-slova_velkymi2 = 0
-for slovo in TEXTS[1].split():
-    if slovo.isupper():
-        slova_velkymi2 += 1
-
-slova_velkymi3 = 0
-for slovo in TEXTS[2].split():
-    if slovo.isupper():
-        slova_velkymi3 += 1
-
-
-
-
-slova_malymi1 = 0
-for slovo in TEXTS[0].split():
-    if slovo.islower():
-        slova_malymi1 += 1
-
-slova_malymi2 = 0
-for slovo in TEXTS[1].split():
-    if slovo.islower():
-        slova_malymi2 += 1
-
-slova_malymi3 = 0
-for slovo in TEXTS[2].split():
-    if slovo.islower():
-        slova_malymi3 += 1
-
-
-
-
-pocet_cisel1 = 0
-for cislo in TEXTS[0].split():
-    if cislo.isnumeric():
-        pocet_cisel1 += 1
-
-pocet_cisel2 = 0
-for cislo in TEXTS[1].split():
-    if cislo.isnumeric():
-        pocet_cisel2 += 1
-
-pocet_cisel3 = 0
-for cislo in TEXTS[2].split():
-    if cislo.isnumeric():
-        pocet_cisel3 += 1
-
-
-
-
-slova_1 = TEXTS[0].split()
-cislo_1 = [int(slovo) for slovo in slova_1 if slovo.isdigit()]
-suma_cisel1 = sum(cislo_1)
-
-slova_2 = TEXTS[1].split()
-cislo_2 = [int(slovo) for slovo in slova_2 if slovo.isdigit()]
-suma_cisel2 = sum(cislo_2)
-
-slova_3 = TEXTS[2].split()
-cislo_3 = [int(slovo) for slovo in slova_3 if slovo.isdigit()]
-suma_cisel3 = sum(cislo_3)
-
-
-
-######tisk odpovědí
-if int(vyber_textu) == 1:
-    print(f"There are {pocet_slov1} words in the selected text.")
-    print(f"There are {velka_pismena1} tittlecase words.")
-    print(f"There are {slova_velkymi1} uppercase words.")
-    print (f"There are {slova_malymi1} lowercase words.")
-    print(f"There are {pocet_cisel1} numeric strings.")
-    print(f"The sum of all the numbers {suma_cisel1}")
-
-
-elif int(vyber_textu) == 2:
-    print(f"There are {pocet_slov2} words in the selected text.")
-    print(f"There are {velka_pismena2} tittlecase words.")
-    print(f"There are {slova_velkymi2} uppercase words.")
-    print (f"There are {slova_malymi2} lowercase words.")
-    print(f"There are {pocet_cisel2} numeric strings.")
-    print(f"The sum of all the numbers {suma_cisel2}")
-
-elif int(vyber_textu) == 3:
-    print(f"There are {pocet_slov3} words in the selected text.")
-    print(f"There are {velka_pismena3} tittlecase words.")
-    print(f"There are {slova_velkymi3} uppercase words.")
-    print (f"There are {slova_malymi3} lowercase words.")
-    print(f"There are {pocet_cisel3} numeric strings.")
-    print(f"The sum of all the numbers {suma_cisel3}")
-
-print("-" * 40)
-
-#######grafické znázornění
-
-print("LEN|  OCURRENCES |NR.")
-
-print("-" * 40)
-
-delky_slov1 = {}
-delky_slov2 = {}
-delky_slov3 = {}
-
-
-for slovo in slova_1:
-    delka_1 = len(slovo.strip(",."))
-    if delka_1 not in delky_slov1:
-        delky_slov1[delka_1] = 0
-    delky_slov1[delka_1] += 1
-
-
-for delka_1, pocet in sorted(delky_slov1.items()):
-    graf_1 = (f"{delka_1} | {'*' * pocet} | {pocet}")
-    if int(vyber_textu) == 1:
-        print(graf_1)
-
-
-for slovo in slova_2:
-    delka_2 = len(slovo.strip(",.").replace("-",""))
-    if delka_2 not in delky_slov2:
-        delky_slov2[delka_2] = 0
-    delky_slov2[delka_2] += 1
-
-
-for delka_2, pocet in sorted(delky_slov2.items()):
-    graf_2  = (f"{delka_2} | {'*' * pocet} | {pocet}")
-    if int(vyber_textu) == 2:
-        print(graf_2)
-
-
-
-for slovo in slova_3:
-    delka_3 = len(slovo.strip(",."))
-    if delka_3 not in delky_slov3:
-        delky_slov3[delka_3] = 0
-    delky_slov3[delka_3] += 1
-
-
-for delka_3, pocet in sorted(delky_slov3.items()):
-    graf_3 = (f"{delka_3} | {'*' * pocet} | {pocet}")
-    if int(vyber_textu) == 3:
-        print(graf_3)
-
-
-#konec projektu
